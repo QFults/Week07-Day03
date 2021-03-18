@@ -1,0 +1,29 @@
+{
+  "name": "Week07-Day03",
+  "version": "1.0.0",
+  "description": "- User Authentication\r - Related Data in Sequelize",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QFults/Week07-Day03.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/QFults/Week07-Day03/issues"
+  },
+  "homepage": "https://github.com/QFults/Week07-Day03#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mysql2": "^2.2.5",
+    "passport": "^0.4.1",
+    "passport-local-sequelize": "^0.9.0",
+    "sequelize": "^6.5.1"
+  }
+}
