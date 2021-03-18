@@ -2,3 +2,4 @@
 
 ## Today's Agenda
 - User Authentication
+- Related Data in Sequelize
