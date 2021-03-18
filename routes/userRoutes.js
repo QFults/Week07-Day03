@@ -4,7 +4,7 @@ const passport = require('passport')
 const jwt = require('jsonwebtoken')
 
 router.get('/users/auth', passport.authenticate('jwt'), (req, res) => {
-  res.sendStatus(200)
+  res.json(req.user.items)
 })
 
 router.post('/users/register', (req, res) => {
@@ -22,7 +22,7 @@ router.post('/users/login', (req, res) => {
   })
 })
 
-router.put('/users', passport.authenticate('jwt'), (req ,res) => {
+router.put('/users', passport.authenticate('jwt'), (req, res) => {
   User.update(req.body, { where: { id: req.user.id } })
     .then(() => res.sendStatus(200))
     .catch(err => console.log(err))

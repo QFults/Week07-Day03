@@ -8,15 +8,62 @@
 </head>
 <body>
   <h1>The Home Page</h1>
+  <button id="signOut">Sign Out</button>
+  <form>
+    <p>
+      <label for="text">Item</label>
+      <input type="text" name="text" id="text">
+    </p>
+    <p>
+      <button id="addItem">Add Item</button>
+    </p>
+  </form>
+  <ul id="items"></ul>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script>
+
+    document.getElementById('signOut').addEventListener('click', event => {
+      localStorage.removeItem('token')
+      window.location = '/login.html'
+    })
+
+    document.getElementById('addItem').addEventListener('click', event => {
+      event.preventDefault()
+      let item = {
+        text: document.getElementById('text').value,
+        isDone: false
+      }
+      axios.post('/api/items', item, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+        .then(({ data: item }) => {
+          console.log(item)
+          const itemElem = document.createElement('li')
+          itemElem.innerHTML = `
+          <p>Text: ${item.text}</p>
+          <p>isDone: ${item.isDone}</p>
+          `
+          document.getElementById('items').append(itemElem)
+        })
+    })
+
     axios.get('/api/users/auth', {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       }
     })
-      .then(res => {
-        console.log(res)
+      .then(({ data: items }) => {
+        console.log(items)
+        items.forEach(item => {
+          const itemElem = document.createElement('li')
+          itemElem.innerHTML = `
+          <p>Text: ${item.text}</p>
+          <p>isDone: ${item.isDone}</p>
+          `
+          document.getElementById('items').append(itemElem)
+        })
       })
       .catch(err => window.location = '/login.html')
   </script>
