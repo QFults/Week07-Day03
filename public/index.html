@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
   <h1>The Home Page</h1>
   <button id="signOut">Sign Out</button>
@@ -66,6 +68,21 @@
         })
       })
       .catch(err => window.location = '/login.html')
+
+    // axios.put('/api/items/1', { 
+    //   // your updates...
+    // }, {
+    //   headers: {
+    //     'Authorization': `Bearer ${localStorage.getItem('token')}`
+    //   }
+    // })
+
+    // axios.delete('/api/items/1', {
+    //   headers: {
+    //     'Authorization': `Bearer ${localStorage.getItem('token')}`
+    //   }
+    // })
   </script>
 </body>
+
 </html>
