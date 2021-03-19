@@ -7,6 +7,16 @@ router.get('/users/auth', passport.authenticate('jwt'), (req, res) => {
   res.json(req.user.items)
 })
 
+router.get('/users/facebook',
+  passport.authenticate('facebook'))
+
+router.get('/users/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  function (req, res) {
+    // Successful authentication, redirect home.
+    res.redirect(`/loading?token=${jwt.sign({ id: req.user.id }, process.env.SECRET)}`)
+  })
+
 router.post('/users/register', (req, res) => {
   const { name, email, username } = req.body
   User.register(new User({ name, email, username }), req.body.password, err => {
